@@ -1,0 +1,11 @@
+{% extends 'main.html' %}
+{% block login %}
+    <div class="modul registr" style="display: block">
+        <form action="/auth/registr/" method="POST">
+            {% csrf_token %}
+            {{ form }}
+            <input class="submit_button" type="submit" value="войти" id="login_block_btn_submit"><br>
+            <!--<span id="close">Закрыть</span>-->
+        </form>
+    </div>
+{% endblock %}

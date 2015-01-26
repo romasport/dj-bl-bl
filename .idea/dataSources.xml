@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="DataSourceManagerImpl" format="xml" hash="2581052801">
+    <data-source source="LOCAL" name="Django default" uuid="7f1705f2-d636-4f46-9df1-d53a2c6f2337">
+      <driver-ref>sqlite.xerial</driver-ref>
+      <jdbc-driver>org.sqlite.JDBC</jdbc-driver>
+      <jdbc-url>jdbc:sqlite:C:\Users\Admin\PycharmProjects\bdlolproject\bdlol.sqlite3</jdbc-url>
+      <libraries />
+    </data-source>
+    <data-source source="LOCAL" name="bdlol" uuid="91387edb-97d2-4e0c-a636-a8874e2c38ee">
+      <driver-ref>sqlite.xerial</driver-ref>
+      <jdbc-driver>org.sqlite.JDBC</jdbc-driver>
+      <jdbc-url>jdbc:sqlite:$PROJECT_DIR$/bdlol.sqlite3</jdbc-url>
+      <libraries />
+    </data-source>
+  </component>
+</project>

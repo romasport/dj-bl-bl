@@ -1,0 +1,40 @@
+﻿{% extends 'main.html' %}
+{% load staticfiles %}
+{% block title %}
+    Сборник юмора Black Desert Online
+{% endblock %}
+{% block description %}
+   На bdlol собраны цитаты, приколы, скрины и шутки популярной mmorpg Black Desert Online. Сделаем bd ярче!
+{% endblock %}
+{% block perl %}
+    {% for perl in perls %}
+    <article>
+        <hr/>
+        <h2><a href="{{ perl.perl_slug }}/">{{ perl.perl_title }}</a></h2>
+        {% if perl.perl_img %}
+            <img src="{{ perl.perl_img.url }}" alt=""/>
+        {% endif %}
+        <div class="content">{{ perl.perl_text|safe }}</div>
+        <div class="panel">
+            {% csrf_token %}
+            <span class="countplus" id="count-plus-{{ perl.id }}">{{ perl.perl_likes }}</span>
+            <span class="plusperl" onclick="perl_plus({{ perl.id }})"></span>
+            <span class="countminus" id="count-minus-{{ perl.id }}">{{ perl.perl_dontlike }}</span>
+            <span class="minusperl" onclick="perl_minus({{ perl.id }})"></span>
+            <span class="author">Автор материала: <a href="#">Admin</a></span>
+            <div class="date">{{ perl.perl_date|date:"d/m/Y" }}</div>
+        </div>
+    </article>
+    {% endfor %}
+
+    <div class="pagenavi">
+        {% if perls.has_previous %}
+            <li class="control"><a href="?page={{ perls.previous_page_number }}">&lt;&lt;</a></li>
+        {% endif %}
+        <span class="pages"> Страница {{ perls.number }} из {{ perls.paginator.num_pages }}
+        {% if perls.has_next %}
+            <li class="control"><a href="?page={{ perls.next_page_number }}">&gt;&gt;</a></li>
+        {% endif %}
+    </div>
+
+{% endblock %}

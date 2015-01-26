@@ -1,0 +1,27 @@
+{% extends 'main.html' %}
+
+{% block title %}
+    {{ news.news_title }}
+{% endblock %}
+
+{% block description %}
+    {{ news.news_descreption }}
+{% endblock %}
+
+{% block keywords %}
+    {{ news.news_keywords }}
+{% endblock %}
+
+{% block news %}
+    <article>
+        <h2>{{ news.news_title }}</h2>
+        {% if news.news_img %}
+            <img src="{{ news.news_img.url }}" alt=""/>
+        {% endif %}
+        <div class="content">{{ news.news_text|safe }}</div>
+        <div class="panel">
+            <span class="author">Автор материала: <a href="#">Admin</a></span>
+            <div class="date">{{ news.news_date|date:"d/m/Y" }}</div>
+        </div>
+    </article>
+{% endblock %}

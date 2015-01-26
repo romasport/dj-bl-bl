@@ -1,0 +1,20 @@
+{% extends 'main.html' %}
+{% load staticfiles %}
+{% block title %}
+    Новости
+{% endblock %}
+{% block news %}
+    {% for item in news %}
+    <article>
+        <h2><a href="/news/{{ item.news_slug }}/">{{ item.news_title }}</a></h2>
+        {% if item.news_img %}
+            <img src="{{ item.news_img.url }}" alt=""/>
+        {% endif %}
+        <div class="content">{{ item.news_text|safe }}</div>
+        <div class="panel">
+            <span class="author">Автор материала: <a href="#">Admin</a></span>
+            <div class="date">{{ item.news_date|date:"d/m/Y" }}</div>
+        </div>
+    </article>
+    {% endfor %}
+{% endblock %}

@@ -1,0 +1,16 @@
+{% for item in news %}
+<article>
+    <a href="/news/{{ item.news_slug }}/">
+        <time>{{ item.news_date |date:"d.m.Y" }}</time><br>
+        <b>{{ item.news_title }}</b>
+        {% if item.news_img %}
+            <img src="{{ item.news_img.url }}" alt=""/>
+        {% endif %}
+        {% if item.news_preview %}
+            <div>{{ item.news_preview|safe }}</div>
+        {% else %}
+            <div>{{ item.news_text|safe }}</div>
+        {% endif %}
+    </a>
+</article>
+{% endfor %}

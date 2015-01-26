@@ -1,0 +1,7 @@
+{% extends 'main.html' %}
+{% block last_comments %}
+    {% for comment in comments %}
+        <p>{{ comment.comments_text }}</p>
+        <hr/>
+    {% endfor %}
+{% endblock %}

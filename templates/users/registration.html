@@ -1,0 +1,22 @@
+{% extends 'main.html' %}
+{% block title %}
+    Регистрация
+{% endblock %}
+{% block page %}
+
+    <div class="inner">
+		<form action="/users/registr/" class="form login_form validateble" id="login_form" method="post">
+            {% csrf_token %}
+            {% if error_messages %}
+                <p class="error">{{ error_messages }}</p>
+            {% endif %}
+			<span class="title">Регистрация</span>
+            {{ form }}
+            <input class="submit_button" type="submit" value="Войти">
+        </form>
+        <div class="links">
+           <!-- <a href="#" class="remind">Восстановить пароль</a>-->
+        </div>
+	</div>
+
+{% endblock %}

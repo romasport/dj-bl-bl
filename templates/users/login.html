@@ -1,0 +1,23 @@
+{% extends 'main.html' %}
+{% block title %}
+    Авторизация
+{% endblock %}
+{% block page %}
+
+    <div class="inner">
+		<form action="/users/login/" class="form login_form validateble" id="login_form" method="post">
+            {% csrf_token %}
+            {% if login_error %}
+                <p class="error">{{ login_error }}</p>
+            {% endif %}
+			<span class="title">Вход</span>
+            <input class="txt" type="email" name="email" id="email" value="" placeholder="Email"  autocomplete="off" required>
+            <input class="txt" type="password" placeholder="Пароль" name="pass" id="pass" required>
+            <input class="submit_button" type="submit" value="Войти">
+        </form>
+        <div class="links">
+           <!-- <a href="#" class="remind">Восстановить пароль</a>-->
+        </div>
+	</div>
+
+{% endblock %}

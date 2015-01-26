@@ -1,0 +1,16 @@
+{% extends 'main.html' %}
+{% block login %}
+    <div class="modul vhod" style="display: block">
+        <form action="/auth/login/" method="POST">
+            {% csrf_token %}
+            <input class="txt" type="text" name="user" id="user" value="" placeholder="логин">
+            <label for="user">Логин</label>
+            <input class="txt" type="password" placeholder="пароль" name="pass" id="pass">
+            <label for="pass">Пароль</label><br>
+            <input type="checkbox" name="remember" id="remember2" value="1" style="vertical-align: middle">
+            <label for="remember2">Запомнить меня</label>
+            <input class="submit_button" type="submit" value="войти" id="login_block_btn_submit"><br>
+            <!--<span id="close">Закрыть</span>-->
+        </form>
+    </div>
+{% endblock %}

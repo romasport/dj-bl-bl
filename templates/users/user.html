@@ -1,0 +1,27 @@
+{% extends 'main.html' %}
+
+{% block title %}
+    Личный кабинет
+{% endblock %}
+{% block page %}
+
+    <div class="userpage">
+        {% if user.get_full_name %}
+            <h1>{{ user.get_full_name }}</h1>
+        {% else %}
+            <h1>{{ user.get_short_name }}</h1>
+        {% endif %}
+        <div class="avatar">
+            <img src="{{ user.avatar.url }}" alt="{{ user.username }}"/>
+        </div>
+        <div class="userinfo">
+            <p><b>Email</b> - {{ user.email }}</p>
+            <p><b>Д.р.</b> - {{ user.date_of_birth }}</p>
+        </div>
+        <div class="clear"></div>
+	</div>
+    <div class="panel">
+
+    </div>
+
+{% endblock %}

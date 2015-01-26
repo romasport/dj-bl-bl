@@ -1,0 +1,74 @@
+{% extends 'main.html' %}
+{% load staticfiles %}
+
+{% block title %}
+    {{ perl.perl_title }}
+{% endblock %}
+
+{% block description %}
+    {{ perl.perl_descreption }}
+{% endblock %}
+
+{% block keywords %}
+    {{ perl.perl_keywords }}
+{% endblock %}
+
+{% block perl %}
+    <article>
+        <p>{{ perl.perl_date }}</p>
+        <h2>{{ perl.perl_title }}</h2>
+        {% if perl.perl_img %}
+            <img src="{{ perl.perl_img.url }}" alt=""/>
+        {% endif %}
+        <div class="content">{{ perl.perl_text|safe }}</div>
+        <div class="panel">
+            {% csrf_token %}
+            <span class="countplus" id="count-plus-{{ perl.id }}">{{ perl.perl_likes }}</span>
+            <span class="plusperl" onclick="perl_plus({{ perl.id }})"></span>
+            <span class="countminus" id="count-minus-{{ perl.id }}">{{ perl.perl_dontlike }}</span>
+            <span class="minusperl" onclick="perl_minus({{ perl.id }})"></span>
+            <span class="author">Автор материала: <a href="#">Admin</a></span>
+            <div class="date">{{ perl.perl_date|date:"d/m/Y" }}</div>
+        </div>
+        <hr>
+
+        {% if comments %}
+            <h3>Коментарии:</h3>
+            {% for comment in comments.values %}
+                <div class="comment_body ">
+                    <div class="info  " rel="8180977">
+                        <a href="/users/{{ comment.comments_username }}/" class="avatar">
+                            <img src="http://www.goodtile.co.kr/_skin/basic/images/icon_no_images.jpg" alt="">
+                        </a>
+                        <a href="/users/{{ comment.comments_username }}/" class="username">{{ comment.comments_username }}</a>
+                        <time>{{ comment.comments_date|date:"d M Y в H:m" }}</time>
+                        <div id="voting_8180977" class="voting   ">
+                            <span class="minus" title="Не нравится" onclick="comment_minus({{ comment.id }})">&#9660;</span>
+                            <span class="plus" title="Нравится" onclick="comment_plus({{ comment.id }})">&#9650;</span>
+                            <div class="mark positive ">
+                                <span class="score" id="comments_reyting-{{ comment.id }}"
+                                      title="Всего {{ comment.comments_reyting }}: ↑{{ comment.comments_plus }} и ↓{{ comment.comments_minus }}">
+                                    {{ comment.comments_reyting }}
+                                </span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="message">
+                        {{ comment.comments_text }}
+                    </div>
+                    <div class="reply">
+                        <a href="#reply" class="reply_link" onclick="return comment_show_reply_form(8180977 )">ответить</a>
+                    </div>
+                    <div class="clear"></div>
+                </div>
+            {% endfor %}
+        {% endif %}
+        {% if username %}
+        <form action="/addcomment/{{ perl.perl_slug }}/" method="post" class="commants_form">
+            {% csrf_token %}
+            {{ form }}
+            <input type="submit" value="Отправить">
+        </form>
+        {% endif %}
+    </article>
+{% endblock %}
